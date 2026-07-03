@@ -48,6 +48,20 @@ function drawCanvas() {
     requestAnimationFrame(drawCanvas);
 }
 
+/* ─── Plain PDF List (always visible, no animation, no dependency) ─── */
+function renderPdfList() {
+    const body = document.getElementById('pdf-list-body');
+    if (!body) return;
+    body.innerHTML = CONFIG.products.map(p => `
+        <tr>
+            <td>${p.chapter}</td>
+            <td>${p.title}</td>
+            <td>${p.price}</td>
+            <td><a href="${p.link}" target="_blank" rel="noopener noreferrer" class="pdf-list-buy">Buy PDF</a></td>
+        </tr>
+    `).join('');
+}
+
 /* ─── Render Chapter Cards ─── */
 function renderCards() {
     const grid = document.getElementById('cards-grid');
@@ -143,15 +157,31 @@ function setYear() {
     if (y) y.textContent = new Date().getFullYear();
 }
 
-/* ─── Boot ─── */
+/* ─── Boot ───
+   Each piece runs independently so that one failing feature
+   (e.g. canvas) can never blank out the rest of the page. */
+function safe(fn, label) {
+    try { fn(); } catch (err) { console.error(`[SolveSphere] ${label} failed:`, err); }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    drawCanvas();
-    renderCards();
-    initReveal();
-    initHeader();
-    initMobileMenu();
-    initSmoothScroll();
-    setYear();
+    safe(renderPdfList, 'renderPdfList');
+    safe(renderCards, 'renderCards');
+    safe(initReveal, 'initReveal');
+    safe(initHeader, 'initHeader');
+    safe(initMobileMenu, 'initMobileMenu');
+    safe(initSmoothScroll, 'initSmoothScroll');
+    safe(setYear, 'setYear');
+    safe(() => {
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        drawCanvas();
+    }, 'canvas background');
 });
+
+/* Safety net: if for any reason JS never runs initReveal (blocked script,
+   ad-blocker, etc.), force all content visible after 1.5s so the page
+   is never stuck blank. */
+setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+}, 1500);
