@@ -12,14 +12,9 @@ const CONFIG = {
         ogImage: 'assets/og-image.png'
     },
     products: [
-        { chapter: 'Chapter 1', title: 'Electric Charges and Fields', desc: 'Coulomb's law, electric field, dipole and flux numericals fully solved.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_1_ID' },
-        { chapter: 'Chapter 2', title: 'Electrostatic Potential and Capacitance', desc: 'Potential, equipotential surfaces, capacitors and energy problems solved.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_2_ID' },
-        { chapter: 'Chapter 3', title: 'Current Electricity', desc: 'Ohm's law, Kirchhoff's rules, Wheatstone bridge and meter bridge solutions.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_3_ID' },
-        { chapter: 'Chapter 4', title: 'Moving Charges and Magnetism', desc: 'Biot-Savart, Ampere, galvanometer and moving coil numericals solved.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_4_ID' },
-        { chapter: 'Chapter 5', title: 'Magnetism and Matter', desc: 'Magnetic dipole, hysteresis, and terrestrial magnetism solved problems.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_5_ID' },
-        { chapter: 'Chapter 6', title: 'Electromagnetic Induction', desc: 'Faraday's law, Lenz's law, mutual and self-inductance numericals.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_6_ID' },
-        { chapter: 'Chapter 7', title: 'Alternating Current', desc: 'AC circuits, LCR, resonance, power factor and transformer problems.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_7_ID' },
-        { chapter: 'Chapter 8', title: 'Electromagnetic Waves', desc: 'Displacement current, EM spectrum and energy density numericals.', price: '₹50', link: 'https://gumroad.com/l/YOUR_CHAPTER_8_ID' }
+        { chapter: 'Chapter 1', title: 'Electric Charges and Fields', desc: "Coulomb's law, electric field, dipole and flux numericals fully solved.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/mptrou' },
+        { chapter: 'Chapter 2', title: 'Electrostatic Potential and Capacitance', desc: 'Potential, equipotential surfaces, capacitors and energy problems solved.', price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/wkbeva' },
+        { chapter: 'Chapter 3', title: 'Current Electricity', desc: "Ohm's law, Kirchhoff's rules, Wheatstone bridge and meter bridge solutions.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/ipivp' }
     ]
 };
 
@@ -59,8 +54,8 @@ function renderCards() {
     if (!grid) return;
     grid.innerHTML = CONFIG.products.map(p => `
         <article class="pdf-card reveal">
-            <div class="pdf-cover">
-                <img src="${CONFIG.images.chapterPlaceholder}" alt="${p.title} cover" loading="lazy">
+            <div class="pdf-cover pdf-cover-placeholder">
+                <span class="pdf-cover-chapter">${p.chapter}</span>
             </div>
             <h3 class="pdf-chapter">${p.title}</h3>
             <p class="pdf-desc">${p.desc}</p>
