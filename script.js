@@ -4,17 +4,17 @@
 
 const CONFIG = {
     images: {
-        logo: 'assets/logo.png',
-        favicon: 'assets/favicon.png',
-        heroBook: 'assets/hero-book.png',
-        bookCover: 'assets/book-cover.png',
-        chapterPlaceholder: 'assets/chapter-placeholder.png',
-        ogImage: 'assets/og-image.png'
+        logo: 'logo.png',
+        favicon: 'favicon.png',
+        heroBook: 'hero-book.png',
+        bookCover: 'book-cover.png',
+        chapterPlaceholder: 'chapter-placeholder.png',
+        ogImage: 'og-image.png'
     },
     products: [
-        { chapter: 'Chapter 1', title: 'Electric Charges and Fields', desc: "Coulomb's law, electric field, dipole and flux numericals fully solved.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/mptrou' },
-        { chapter: 'Chapter 2', title: 'Electrostatic Potential and Capacitance', desc: 'Potential, equipotential surfaces, capacitors and energy problems solved.', price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/wkbeva' },
-        { chapter: 'Chapter 3', title: 'Current Electricity', desc: "Ohm's law, Kirchhoff's rules, Wheatstone bridge and meter bridge solutions.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/ipivp' }
+        { chapter: 'Chapter 1', title: 'Electric Charges and Fields', desc: "Coulomb's law, electric field, dipole and flux numericals fully solved.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/mptrou', previews: ['ch1-preview-1.png', 'ch1-preview-2.png', 'ch1-preview-3.png'] },
+        { chapter: 'Chapter 2', title: 'Electrostatic Potential and Capacitance', desc: 'Potential, equipotential surfaces, capacitors and energy problems solved.', price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/wkbeva', previews: ['ch2-preview-1.png', 'ch2-preview-2.png', 'ch2-preview-3.png'] },
+        { chapter: 'Chapter 3', title: 'Current Electricity', desc: "Ohm's law, Kirchhoff's rules, Wheatstone bridge and meter bridge solutions.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/ipivp', previews: ['ch3-preview-1.png', 'ch3-preview-2.png', 'ch3-preview-3.png'] }
     ]
 };
 
@@ -52,10 +52,13 @@ function drawCanvas() {
 function renderCards() {
     const grid = document.getElementById('cards-grid');
     if (!grid) return;
-    grid.innerHTML = CONFIG.products.map(p => `
+    grid.innerHTML = CONFIG.products.map((p, pi) => `
         <article class="pdf-card reveal">
-            <div class="pdf-cover pdf-cover-placeholder">
-                <span class="pdf-cover-chapter">${p.chapter}</span>
+            <div class="pdf-cover" data-card-index="${pi}">
+                ${p.previews.map((src, i) => `<img src="${src}" alt="${p.title} preview ${i + 1}" class="pdf-cover-slide${i === 0 ? ' active' : ''}" loading="lazy">`).join('')}
+                <div class="pdf-cover-dots">
+                    ${p.previews.map((_, i) => `<span class="pdf-cover-dot${i === 0 ? ' active' : ''}"></span>`).join('')}
+                </div>
             </div>
             <h3 class="pdf-chapter">${p.title}</h3>
             <p class="pdf-desc">${p.desc}</p>
@@ -63,6 +66,24 @@ function renderCards() {
             <a href="${p.link}" class="btn btn-primary btn-buy" target="_blank" rel="noopener noreferrer">Buy Now</a>
         </article>
     `).join('');
+    initCoverCarousels();
+}
+
+/* ─── Auto-loop preview carousels ─── */
+function initCoverCarousels() {
+    document.querySelectorAll('.pdf-cover').forEach(cover => {
+        const slides = cover.querySelectorAll('.pdf-cover-slide');
+        const dots = cover.querySelectorAll('.pdf-cover-dot');
+        if (slides.length <= 1) return;
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
+        }, 2200);
+    });
 }
 
 /* ─── Scroll Reveal ─── */
