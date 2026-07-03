@@ -200,6 +200,13 @@ a { color: var(--primary); text-decoration: none; }
     margin-bottom: 20px;
     color: #fff;
 }
+.pdf-list-intro {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    max-width: 640px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
 .pdf-list-table {
     width: 100%;
     border-collapse: collapse;
