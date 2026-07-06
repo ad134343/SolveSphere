@@ -12,9 +12,9 @@ const CONFIG = {
         ogImage: 'og-image.png'
     },
     products: [
-        { chapter: 'Chapter 1', title: 'Electric Charges and Fields', desc: "Coulomb's law, electric field, dipole and flux numericals fully solved.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/mptrou', previews: ['ch1-preview-1.png', 'ch1-preview-2.png', 'ch1-preview-3.png'] },
-        { chapter: 'Chapter 2', title: 'Electrostatic Potential and Capacitance', desc: 'Potential, equipotential surfaces, capacitors and energy problems solved.', price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/wkbeva', previews: ['ch2-preview-1.png', 'ch2-preview-2.png', 'ch2-preview-3.png'] },
-        { chapter: 'Chapter 3', title: 'Current Electricity', desc: "Ohm's law, Kirchhoff's rules, Wheatstone bridge and meter bridge solutions.", price: '₹50', link: 'https://adnanmerchant.gumroad.com/l/ipivp', previews: ['ch3-preview-1.png', 'ch3-preview-2.png', 'ch3-preview-3.png'] }
+        { chapter: 'Chapter 1', title: 'Electric Charges and Fields', desc: "Coulomb's law, electric field, dipole and flux numericals fully solved.", price: '₹80', link: 'https://adnanmerchant.gumroad.com/l/mptrou', previews: ['ch1-preview-1.png', 'ch1-preview-2.png', 'ch1-preview-3.png'] },
+        { chapter: 'Chapter 2', title: 'Electrostatic Potential and Capacitance', desc: 'Potential, equipotential surfaces, capacitors and energy problems solved.', price: '₹80', link: 'https://adnanmerchant.gumroad.com/l/wkbeva', previews: ['ch2-preview-1.png', 'ch2-preview-2.png', 'ch2-preview-3.png'] },
+        { chapter: 'Chapter 3', title: 'Current Electricity', desc: "Ohm's law, Kirchhoff's rules, Wheatstone bridge and meter bridge solutions.", price: '₹80', link: 'https://adnanmerchant.gumroad.com/l/ipivp', previews: ['ch3-preview-1.png', 'ch3-preview-2.png', 'ch3-preview-3.png'] }
     ]
 };
 
